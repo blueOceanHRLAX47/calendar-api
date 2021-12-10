@@ -6,6 +6,10 @@ const app = express();
 app.use(morgan('dev'));
 app.use(cors());
 
+const { sequelize } = require('../db/models');
+
+sequelize.sync({ force: false });
+
 app.get('/', (req, res) => {
   res.send('Hello World').status(200);
 })
