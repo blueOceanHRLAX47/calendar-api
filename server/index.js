@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
 
-const { sequelize, user, saved_recipe, saved_workout, QueryTypes } = require('../db/models');
+const { sequelize, user, saved_recipe, saved_workout, workout, recipe, QueryTypes } = require('../db/models');
 const { Op } = require('sequelize');
 
 sequelize.sync({ force: false });
@@ -23,7 +23,7 @@ app.get('/workouts', (req, res) => {
         [Op.gte]: new Date()
       }
     },
-    // include: workouts
+    include: workout
   })
     .then(workouts => {
       res.send(workouts).status(200);
@@ -54,10 +54,11 @@ app.get('/recipes', (req, res) => {
     where: {
       user_id: req.body.user.id,
       date_on_calendar: {
-        [Op.gte]: new Date().setDate(new Date().getDate() + 7)
+        [Op.lte]: new Date().setDate(new Date().getDate() + 7),
+        [Op.gte]: new Date()
       }
     },
-    // include: recipes
+    include: recipe
   })
     .then(recipes => {
       res.send(recipes).status(200);
@@ -69,9 +70,10 @@ app.get('/recipes', (req, res) => {
 });
 
 app.post('/recipes', (req, res) => {
+  console.log(saved_recipe);
   saved_recipe.create({
     user_id: req.body.user.id,
-    recipe_id: req.body.workout_id,
+    recipe_id: req.body.recipe_id,
     added_to_calendar: true,
     date_on_calendar: req.body.date_on_calendar
   })

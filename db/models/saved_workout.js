@@ -15,7 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   };
   saved_workout.init({
     user_id: DataTypes.INTEGER,
-    workout_id: DataTypes.INTEGER,
+    workout_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'workouts',
+        key: 'id'
+      }
+    },
     // added_to_calendar: DataTypes.BOOLEAN,
     time_on_calendar: DataTypes.DATE,
   }, {
