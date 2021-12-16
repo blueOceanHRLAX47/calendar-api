@@ -55,7 +55,7 @@ app.put('/workouts', (req, res) => {
   })
     .then(workout => {
       workout.time_on_calendar = req.body.time_on_calendar;
-      return recipe.save();
+      return workout.save();
     })
     .then(result => res.status(201).send(result))
     .catch(err => res.status(500).send(err));
