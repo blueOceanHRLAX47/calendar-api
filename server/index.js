@@ -60,9 +60,12 @@ app.put('/workouts', (req, res) => {
 });
 
 app.delete('/workouts', (req, res) => {
-  saved_workout.deleteOne({
+  saved_workout.findOne({
     id: req.body.id
   })
+    .then(result => {
+      return result.destroy();
+    })
     .then(result => res.sendStatus(202))
     .catch(err => res.status(500).send(err));
 });
@@ -112,10 +115,15 @@ app.put('/recipes', (req, res) => {
 });
 
 app.delete('/recipes', (req, res) => {
-  saved_recipe.deleteOne({
+  saved_recipe.findOne({
     id: req.body.id
   })
-    .then(result => res.sendStatus(202))
+    .then(result => {
+      return result.destroy();
+    })
+    .then(result => {
+      res.sendStatus(202);
+    })
     .catch(err => res.status(500).send(err));
 });
 
