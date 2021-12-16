@@ -47,8 +47,7 @@ app.post('/workouts', (req, res) => {
     });
 });
 
-
-app.put('/recipes', (req, res) => {
+app.put('/workouts', (req, res) => {
   saved_workout.findOne({
     id: req.body.id
   })
@@ -57,6 +56,14 @@ app.put('/recipes', (req, res) => {
       return recipe.save();
     })
     .then(result => res.status(201).send(result))
+    .catch(err => res.status(500).send(err));
+});
+
+app.delete('/workouts', (req, res) => {
+  saved_workout.deleteOne({
+    id: req.body.id
+  })
+    .then(result => res.sendStatus(202))
     .catch(err => res.status(500).send(err));
 });
 
@@ -101,6 +108,14 @@ app.put('/recipes', (req, res) => {
       return recipe.save();
     })
     .then(result => res.status(201).send(result))
+    .catch(err => res.status(500).send(err));
+});
+
+app.delete('/recipes', (req, res) => {
+  saved_recipe.deleteOne({
+    id: req.body.id
+  })
+    .then(result => res.sendStatus(202))
     .catch(err => res.status(500).send(err));
 });
 
