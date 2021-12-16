@@ -49,7 +49,9 @@ app.post('/workouts', (req, res) => {
 
 app.put('/workouts', (req, res) => {
   saved_workout.findOne({
-    id: req.body.id
+    where: {
+      id: req.body.id
+    }
   })
     .then(workout => {
       workout.time_on_calendar = req.body.time_on_calendar;
@@ -61,7 +63,9 @@ app.put('/workouts', (req, res) => {
 
 app.delete('/workouts', (req, res) => {
   saved_workout.findOne({
-    id: req.body.id
+    where: {
+      id: req.body.id
+    }
   })
     .then(result => {
       return result.destroy();
@@ -104,7 +108,9 @@ app.post('/recipes', (req, res) => {
 
 app.put('/recipes', (req, res) => {
   saved_recipe.findOne({
-    id: req.body.id
+    where: {
+      id: req.body.id
+    }
   })
     .then(recipe => {
       recipe.date_on_calendar = req.body.date_on_calendar;
@@ -116,7 +122,9 @@ app.put('/recipes', (req, res) => {
 
 app.delete('/recipes', (req, res) => {
   saved_recipe.findOne({
-    id: req.body.id
+    where: {
+      id: req.body.id
+    }
   })
     .then(result => {
       return result.destroy();
