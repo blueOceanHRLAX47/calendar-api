@@ -17,11 +17,7 @@ sequelize.sync({ force: false });
 app.get('/workouts', (req, res) => {
   saved_workout.findAll({
     where: {
-      user_id: req.body.user.id,
-      time_on_calendar: {
-        [Op.lte]: new Date().setDate(new Date().getDate() + 7),
-        [Op.gte]: new Date()
-      }
+      user_id: req.body.user.id
     },
     include: workout
   })
@@ -79,11 +75,7 @@ app.delete('/workouts/:id', (req, res) => {
 app.get('/recipes', (req, res) => {
   saved_recipe.findAll({
     where: {
-      user_id: req.body.user.id,
-      date_on_calendar: {
-        [Op.lte]: new Date().setDate(new Date().getDate() + 7),
-        [Op.gte]: new Date()
-      }
+      user_id: req.body.user.id
     },
     include: recipe
   })
