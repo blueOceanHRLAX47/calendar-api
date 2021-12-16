@@ -61,10 +61,11 @@ app.put('/workouts', (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-app.delete('/workouts', (req, res) => {
+app.delete('/workouts/:id', (req, res) => {
+
   saved_workout.findOne({
     where: {
-      id: req.body.id
+      id: req.params.id
     }
   })
     .then(result => {
@@ -120,10 +121,10 @@ app.put('/recipes', (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-app.delete('/recipes', (req, res) => {
+app.delete('/recipes/:id', (req, res) => {
   saved_recipe.findOne({
     where: {
-      id: req.body.id
+      id: req.params.id
     }
   })
     .then(result => {
