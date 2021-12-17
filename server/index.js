@@ -79,7 +79,6 @@ app.get('/recipes', (req, res) => {
     where: {
       user_id: req.body.user.id
     },
-    include: recipe
   })
     .then(recipes => {
       res.send(recipes).status(200);
@@ -93,7 +92,7 @@ app.get('/recipes', (req, res) => {
 app.post('/recipes', (req, res) => {
   saved_recipe.create({
     user_id: req.body.user.id,
-    recipe_id: req.body.recipe_id,
+    spoon_recipe_id: req.body.spoon_recipe_id,
     added_to_calendar: true,
     date_on_calendar: req.body.date_on_calendar
   })

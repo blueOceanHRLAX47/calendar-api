@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.saved_recipe, {
-        foreignKey: 'recipe_id'
-      });
-      models.saved_recipe.belongsTo(this, {
-        foreignKey: 'recipe_id'
-      });
+      // this.hasMany(models.saved_recipe, {
+      //   foreignKey: 'recipe_id'
+      // });
+      // models.saved_recipe.belongsTo(this, {
+      //   foreignKey: 'recipe_id'
+      // });
     }
   };
   recipe.init({
