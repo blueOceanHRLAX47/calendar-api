@@ -6,7 +6,9 @@ const app = express();
 const PORT = 3001;
 app.use(express.json());
 // app.use(morgan('dev'));
-app.use(cors());
+app.use(cors(
+  {'http://cultiveight.net'}
+));
 
 const { sequelize, user, saved_recipe, saved_workout, workout, recipe, QueryTypes } = require('../db/models');
 const { Op } = require('sequelize');

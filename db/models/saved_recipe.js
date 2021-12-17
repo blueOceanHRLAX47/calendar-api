@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   saved_recipe.init({
     user_id: DataTypes.INTEGER,
-    recipe_id: DataTypes.INTEGER,
+    spoon_recipe_id: DataTypes.INTEGER,
     added_to_calendar: DataTypes.BOOLEAN,
     date_on_calendar: DataTypes.DATE,
   }, {
